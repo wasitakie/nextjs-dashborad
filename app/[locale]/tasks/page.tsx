@@ -223,12 +223,9 @@ export default function TasksPage() {
 
   return (
     <div className="flex h-screen flex-col">
-      <Header
-        onSearchChange={setSearch}
-        placeholder={t("search")}
-      />
+      <Header onSearchChange={setSearch} placeholder={t("search")} />
 
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="premium-page">
         <section className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-cyan-50 px-3 py-1 text-[11px] font-black text-cyan-700 dark:bg-cyan-950/40 dark:text-cyan-300">

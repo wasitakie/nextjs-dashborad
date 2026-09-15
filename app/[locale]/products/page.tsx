@@ -3,7 +3,14 @@
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
+import { DashboardLoadingState } from "@/components/dashboard-loading-state";
 import { Header } from "@/components/header";
+import {
+  HeroMetric,
+  SalesHero,
+  SalesMetric,
+  SalesPage,
+} from "@/components/sales-dashboard-ui";
 import { getProducts, updateProductStock } from "@/lib/actions";
 import { Product, ProductStatus } from "@/lib/data";
 import {
@@ -82,10 +89,13 @@ export default function ProductsPage() {
   const [category, setCategory] = useState("all");
   const [status, setStatus] = useState("all");
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const loadProducts = useCallback(async () => {
+    setIsLoading(true);
     const rows = await getProducts({ search, category, status });
     setProducts(rows);
+    setIsLoading(false);
   }, [category, search, status]);
 
   useEffect(() => {
@@ -198,77 +208,81 @@ export default function ProductsPage() {
         placeholder={t("search")}
       />
 
-      <div className="flex-1 overflow-y-auto p-6">
-        <section className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1 text-[11px] font-black text-blue-700 dark:bg-blue-950/40 dark:text-blue-300">
-              <Boxes className="h-3.5 w-3.5" />
-              {t("badge")}
-            </p>
-            <h1 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white">
-              {t("title")}
-            </h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
-              {t("subtitle")}
-            </p>
-          </div>
+      <SalesPage>
+        <div className="space-y-6">
+          <SalesHero
+            badge={t("badge")}
+            icon={Boxes}
+            title={t("title")}
+            subtitle={t("subtitle")}
+            metric={
+              <HeroMetric
+                label={t("inventoryValue")}
+                value={money.format(summary.totalValue)}
+                detail={`${products.length} SKUs · ${summary.totalUnits} units`}
+              />
+            }
+          >
+            <div className="flex flex-wrap items-center gap-2 rounded-lg border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+              <FilterSelect
+                label="หมวดหมู่"
+                value={category}
+                onChange={(value) => {
+                  setCategory(value);
+                  setPage(1);
+                }}
+              >
+                <option value="all">{t("allCategories")}</option>
+                {categories.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </FilterSelect>
 
-          <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-            <FilterSelect
-              label="หมวดหมู่"
-              value={category}
-              onChange={(value) => {
-                setCategory(value);
-                setPage(1);
-              }}
-            >
-              <option value="all">{t("allCategories")}</option>
-              {categories.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </FilterSelect>
+              <FilterSelect
+                label="สถานะ"
+                value={status}
+                onChange={(value) => {
+                  setStatus(value);
+                  setPage(1);
+                }}
+              >
+                <option value="all">{t("allStatuses")}</option>
+                <option value="IN_STOCK">{tStatus("IN_STOCK")}</option>
+                <option value="LOW_STOCK">{tStatus("LOW_STOCK")}</option>
+                <option value="OUT_OF_STOCK">{tStatus("OUT_OF_STOCK")}</option>
+              </FilterSelect>
+              <ButtonLink href="/addproduct" icon={PackagePlus} variant="primary">
+                {t("addProduct")}
+              </ButtonLink>
+            </div>
+          </SalesHero>
 
-            <FilterSelect
-              label="สถานะ"
-              value={status}
-              onChange={(value) => {
-                setStatus(value);
-                setPage(1);
-              }}
-            >
-              <option value="all">{t("allStatuses")}</option>
-              <option value="IN_STOCK">{tStatus("IN_STOCK")}</option>
-              <option value="LOW_STOCK">{tStatus("LOW_STOCK")}</option>
-              <option value="OUT_OF_STOCK">{tStatus("OUT_OF_STOCK")}</option>
-            </FilterSelect>
-            <ButtonLink href="/addproduct" icon={PackagePlus} variant="primary">
-              {t("addProduct")}
-            </ButtonLink>
-          </div>
-        </section>
-
-        <section className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
-          <Metric
+          {isLoading ? (
+            <DashboardLoadingState />
+          ) : (
+            <>
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          <SalesMetric
             icon={Layers3}
             label={t("skuCount")}
             value={`${products.length}`}
             detail={t("shownItems")}
           />
-          <Metric
+          <SalesMetric
             icon={Boxes}
             label={t("unitsOnHand")}
             value={`${summary.totalUnits}`}
             detail={t("allProducts")}
           />
-          <Metric
+          <SalesMetric
             icon={CircleDollarSign}
             label={t("inventoryValue")}
             value={money.format(summary.totalValue)}
             detail={t("salePrice")}
           />
-          <Metric
+          <SalesMetric
             icon={AlertCircle}
             label={t("reorderNeeded")}
             value={`${summary.lowStock + summary.outOfStock}`}
@@ -277,7 +291,7 @@ export default function ProductsPage() {
               out: summary.outOfStock,
             })}
           />
-          <Metric
+          <SalesMetric
             icon={TrendingUp}
             label={t("totalSales")}
             value={`${summary.salesCount}`}
@@ -305,7 +319,7 @@ export default function ProductsPage() {
                     setPage(1);
                   }}
                   placeholder={t("localSearch")}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-9 pr-3 text-xs font-semibold text-slate-700 outline-none transition focus:border-blue-400 focus:bg-white focus:ring-4 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:ring-blue-950"
+                  className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-9 pr-3 text-xs font-semibold text-slate-700 outline-none transition focus:border-teal-400 focus:bg-white focus:ring-4 focus:ring-teal-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:ring-teal-950"
                 />
               </div>
               <div>
@@ -389,7 +403,7 @@ export default function ProductsPage() {
                             onChange={(event) =>
                               setExactStock(product, event.target.value)
                             }
-                            className="h-8 w-16 rounded-lg border border-slate-200 bg-white text-center text-xs font-black text-slate-900 outline-none focus:border-blue-400 focus:ring-4 focus:ring-blue-100 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:focus:ring-blue-950"
+                            className="h-8 w-16 rounded-lg border border-slate-200 bg-white text-center text-xs font-black text-slate-900 outline-none focus:border-teal-400 focus:ring-4 focus:ring-teal-100 dark:border-slate-700 dark:bg-slate-950 dark:text-white dark:focus:ring-teal-950"
                           />
                           <button
                             type="button"
@@ -536,36 +550,10 @@ export default function ProductsPage() {
             </button>
           </form> */}
         </section>
-      </div>
-    </div>
-  );
-}
-
-function Metric({
-  icon: Icon,
-  label,
-  value,
-  detail,
-}: {
-  icon: React.ElementType;
-  label: string;
-  value: string;
-  detail: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-      <div className="mb-4 flex items-center justify-between">
-        <span className="text-xs font-bold text-slate-500">{label}</span>
-        <span className="rounded-xl bg-slate-100 p-2 text-slate-700 dark:bg-slate-800 dark:text-slate-200">
-          <Icon className="h-4 w-4" />
-        </span>
-      </div>
-      <div className="truncate text-2xl font-black text-slate-950 dark:text-white">
-        {value}
-      </div>
-      <div className="mt-1 text-[11px] font-medium text-slate-400">
-        {detail}
-      </div>
+            </>
+          )}
+        </div>
+      </SalesPage>
     </div>
   );
 }

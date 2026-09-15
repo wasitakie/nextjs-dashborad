@@ -8,6 +8,8 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
+  Line,
+  LineChart,
   Pie,
   PieChart,
   ResponsiveContainer,
@@ -31,7 +33,7 @@ const money = new Intl.NumberFormat("th-TH", {
   maximumFractionDigits: 0,
 });
 
-const chartColors = ["#0f766e", "#2563eb", "#f59e0b", "#8b5cf6", "#ef4444"];
+const chartColors = ["#0f766e", "#64748b", "#94a3b8", "#14b8a6", "#cbd5e1"];
 
 export type DashboardChartMode = "ecommerce" | "analytics" | "saas" | "stocks";
 
@@ -84,7 +86,7 @@ export function DashboardCharts({
                   tick={{ fontSize: 11, fill: "#94a3b8" }}
                 />
                 <Tooltip contentStyle={tooltipStyle} />
-                <Bar dataKey="value" fill="#2563eb" radius={[10, 10, 0, 0]} />
+                <Bar dataKey="value" fill="#0f766e" radius={[10, 10, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           ) : (
@@ -148,7 +150,10 @@ export function DashboardCharts({
           <VelocityChart velocity={velocity} />
         </ChartPanel>
 
-        <ChartPanel title="Priority workload" subtitle="ชั่วโมงงานแยกตาม priority">
+        <ChartPanel
+          title="Priority workload"
+          subtitle="ชั่วโมงงานแยกตาม priority"
+        >
           {dashboard.priorityWorkload.some((item) => item.hours > 0) ? (
             <ResponsiveContainer width="100%" height={300}>
               <BarChart
@@ -232,7 +237,10 @@ export function DashboardCharts({
         )}
       </ChartPanel>
 
-      <ChartPanel title="Stock risk" subtitle="สินค้าพร้อมขาย เทียบกับสินค้าเสี่ยง">
+      <ChartPanel
+        title="Stock risk"
+        subtitle="สินค้าพร้อมขาย เทียบกับสินค้าเสี่ยง"
+      >
         {dashboard.stockRisk.length > 0 ? (
           <StatusPie data={dashboard.stockRisk} />
         ) : (
@@ -306,8 +314,63 @@ export function VelocityChart({ velocity }: { velocity: TaskVelocityPoint[] }) {
   );
 }
 
-export function StatusPie({ data }: { data: { name: string; value: number }[] }) {
-  return (
+export function SalesTrendChart({
+  data,
+}: {
+  data: { date: string; revenue: number }[];
+}) {
+  return data.length > 0 ? (
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart
+        data={data}
+        margin={{ left: -8, right: 16, top: 12, bottom: 0 }}
+      >
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="#e2e8f0"
+          vertical={false}
+        />
+        <XAxis
+          dataKey="date"
+          tickLine={false}
+          axisLine={false}
+          tick={{ fontSize: 11, fill: "#94a3b8" }}
+        />
+        <YAxis
+          tickFormatter={(value) => `${Math.round(Number(value) / 1000)}k`}
+          tickLine={false}
+          axisLine={false}
+          tick={{ fontSize: 11, fill: "#94a3b8" }}
+        />
+        <Tooltip
+          formatter={(value) => money.format(Number(value))}
+          contentStyle={tooltipStyle}
+        />
+        <Line
+          type="monotone"
+          dataKey="revenue"
+          stroke="#0f766e"
+          strokeWidth={3}
+          dot={{ r: 3, strokeWidth: 2, fill: "#ffffff" }}
+          activeDot={{ r: 6, strokeWidth: 0, fill: "#0f766e" }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  ) : (
+    <ChartEmptyState
+      icon={Activity}
+      title="ยังไม่มียอดขาย"
+      detail="เมื่อมี order ที่ชำระเงินแล้ว ระบบจะแสดงแนวโน้มรายวันตรงนี้"
+    />
+  );
+}
+
+export function StatusPie({
+  data,
+}: {
+  data: { name: string; value: number }[];
+}) {
+  return data.length > 0 ? (
     <ResponsiveContainer width="100%" height={300}>
       <PieChart>
         <Pie
@@ -328,6 +391,12 @@ export function StatusPie({ data }: { data: { name: string; value: number }[] })
         <Tooltip contentStyle={tooltipStyle} />
       </PieChart>
     </ResponsiveContainer>
+  ) : (
+    <ChartEmptyState
+      icon={Activity}
+      title="ยังไม่มีข้อมูลสถานะ"
+      detail="เมื่อมีรายการในระบบ สัดส่วนสถานะจะแสดงตรงนี้"
+    />
   );
 }
 
@@ -346,7 +415,7 @@ export function ChartPanel({
 }) {
   return (
     <section
-      className={`rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/20 ${className}`}
+      className={`rounded-lg border border-slate-200/80 bg-white p-5 shadow-sm shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900 dark:shadow-black/20 ${className}`}
     >
       <div className="mb-5">
         <div className="flex items-center gap-2">
@@ -371,10 +440,17 @@ export function MultiBarChart({
   bars: { dataKey: string; fill: string }[];
   height?: number;
 }) {
-  return (
+  return data.length > 0 ? (
     <ResponsiveContainer width="100%" height={height}>
-      <BarChart data={data} margin={{ left: -24, right: 12, top: 8, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+      <BarChart
+        data={data}
+        margin={{ left: -24, right: 12, top: 8, bottom: 0 }}
+      >
+        <CartesianGrid
+          strokeDasharray="3 3"
+          stroke="#e2e8f0"
+          vertical={false}
+        />
         <XAxis
           dataKey="name"
           tickLine={false}
@@ -397,6 +473,12 @@ export function MultiBarChart({
         ))}
       </BarChart>
     </ResponsiveContainer>
+  ) : (
+    <ChartEmptyState
+      icon={Boxes}
+      title="ยังไม่มีข้อมูลสำหรับกราฟ"
+      detail="เมื่อมีข้อมูลในหมวดนี้ ระบบจะแสดงกราฟเปรียบเทียบตรงนี้"
+    />
   );
 }
 
@@ -409,7 +491,7 @@ export function ValuePieChart({
   formatter?: (value: number) => string;
   height?: number;
 }) {
-  return (
+  return data.length > 0 ? (
     <ResponsiveContainer width="100%" height={height}>
       <PieChart>
         <Pie data={data} dataKey="value" nameKey="name" outerRadius={96}>
@@ -428,6 +510,12 @@ export function ValuePieChart({
         />
       </PieChart>
     </ResponsiveContainer>
+  ) : (
+    <ChartEmptyState
+      icon={Boxes}
+      title="ยังไม่มีข้อมูลสินค้า"
+      detail="เมื่อมีสินค้าในระบบ มูลค่าสต็อกจะแสดงเป็นสัดส่วนตรงนี้"
+    />
   );
 }
 
@@ -441,7 +529,7 @@ function ChartEmptyState({
   detail: string;
 }) {
   return (
-    <div className="flex min-h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 p-6 text-center dark:border-slate-800 dark:bg-slate-950/40">
+    <div className="flex min-h-64 flex-col items-center justify-center rounded-lg border border-dashed border-slate-200 bg-slate-50/60 p-6 text-center dark:border-slate-800 dark:bg-slate-950/40">
       <Icon className="mb-3 h-8 w-8 text-slate-300" />
       <div className="text-sm font-black text-slate-700 dark:text-slate-200">
         {title}

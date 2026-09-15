@@ -12,7 +12,7 @@ export function DashboardLoadingState() {
                 <Skeleton className="h-4 w-24" />
                 <Skeleton className="mt-6 h-8 w-32" />
               </div>
-              <Skeleton className="h-11 w-11 rounded-2xl" />
+              <Skeleton className="h-11 w-11 rounded-lg" />
             </div>
             <div className="mt-5 flex items-center justify-between gap-3">
               <Skeleton className="h-3 w-28" />

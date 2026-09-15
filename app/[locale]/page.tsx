@@ -5,6 +5,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { DashboardCharts } from "@/components/dashboard-charts";
 import { DashboardLoadingState } from "@/components/dashboard-loading-state";
 import { Header } from "@/components/header";
+import {
+  HeroMetric,
+  SalesHero,
+  SalesPage,
+} from "@/components/sales-dashboard-ui";
 import { Link } from "@/i18n/navigation";
 import {
   getConversations,
@@ -232,41 +237,33 @@ export default function OverviewPage() {
         placeholder={t("search")}
       />
 
-      <main className="flex-1 space-y-5 overflow-y-auto bg-slate-50/70 p-4 dark:bg-slate-950/70 sm:p-6 lg:p-8">
-        <section className="flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-sm shadow-slate-200/60 backdrop-blur dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-black/20 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-[11px] font-black text-teal-700 dark:border-teal-900 dark:bg-teal-950/40 dark:text-teal-300">
-              <Sparkles className="h-3.5 w-3.5" />
-              {t("badge")}
-            </div>
-            <h1 className="text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-[32px]">
-              {t("title")}
-            </h1>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-500 dark:text-slate-400">
-              {t("subtitle")}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="hidden text-right text-[11px] font-bold text-slate-400 sm:block">
-              <div className="uppercase tracking-wider">Dashboard view</div>
-              <div className="mt-1 text-slate-600 dark:text-slate-300">
-                EcomFlow
-              </div>
-            </div>
-            <button
-              type="button"
-              disabled={isLoading}
-              onClick={() => void loadData()}
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-black text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
-            >
-              <RefreshCw
-                className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`}
-              />
-              {tCommon("refresh")}
-            </button>
-          </div>
-        </section>
+      <SalesPage>
+        <div className="space-y-6">
+        <SalesHero
+          badge={t("badge")}
+          icon={Sparkles}
+          title={t("title")}
+          subtitle={t("subtitle")}
+          metric={
+            <HeroMetric
+              label="Paid revenue"
+              value={money.format(dashboard.paidRevenue)}
+              detail={`${orders.length} orders · ${dashboard.openChats} open chats`}
+            />
+          }
+        >
+          <button
+            type="button"
+            disabled={isLoading}
+            onClick={() => void loadData()}
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-xs font-black text-slate-700 transition hover:-translate-y-0.5 hover:bg-slate-50 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+          >
+            <RefreshCw
+              className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`}
+            />
+            {tCommon("refresh")}
+          </button>
+        </SalesHero>
 
         {error && (
           <StatePanel
@@ -367,7 +364,8 @@ export default function OverviewPage() {
             </Panel>
           </>
         )}
-      </main>
+        </div>
+      </SalesPage>
     </div>
   );
 }

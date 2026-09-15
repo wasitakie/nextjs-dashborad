@@ -143,7 +143,7 @@ export default function TaskListPage() {
     <div className="flex h-screen flex-col">
       <Header onSearchChange={setSearch} placeholder={t("search")} />
 
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="premium-page">
         <section className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-[11px] font-black text-indigo-700 dark:bg-indigo-950/40 dark:text-indigo-300">

@@ -89,7 +89,7 @@ export default function ProfilePage() {
     <div className="flex h-screen flex-col">
       <Header onSearchChange={setSearch} placeholder={t("search")} />
 
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="premium-page">
         <section className="mb-6 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <div className="h-28 bg-gradient-to-r from-slate-950 via-cyan-800 to-emerald-700" />
           <div className="flex flex-col gap-6 px-6 pb-6">
