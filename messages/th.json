@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "title": "EcomFlow - ระบบปฏิบัติการ E-commerce และแชทลูกค้า",
+    "description": "แดชบอร์ด E-commerce Operations พร้อม Customer Chat, Order Management, Inventory และ Analytics"
+  },
+  "common": {
+    "searchPlaceholder": "ค้นหา Orders, สินค้า, หรือชื่อลูกค้า...",
+    "openMenu": "เปิดเมนู",
+    "closeMenu": "ปิดเมนู",
+    "switchTheme": "สลับธีม",
+    "customerChat": "แชทลูกค้า",
+    "notifications": "การแจ้งเตือน",
+    "notificationTitle": "Notifications",
+    "itemsToReview": "{count} รายการที่ต้องดู",
+    "live": "Live",
+    "noNotifications": "ไม่มี notification ใหม่",
+    "allClear": "ทุกอย่างเรียบร้อยดี",
+    "newChatFrom": "แชทใหม่จาก {name}",
+    "customer": "ลูกค้า",
+    "urgentTask": "Urgent task: {id}",
+    "dueSoon": "ใกล้ครบกำหนด {date}",
+    "admin": "Admin",
+    "menu": "Menu",
+    "support": "Support",
+    "systemReady": "ระบบพร้อมใช้งาน",
+    "minimalAdmin": "Minimal Admin",
+    "language": "ภาษา",
+    "thai": "ไทย",
+    "english": "English",
+    "export": "Export",
+    "refresh": "Refresh",
+    "retry": "Retry",
+    "loadingErrorTitle": "เกิดข้อผิดพลาด",
+    "unread": "ยังไม่อ่าน",
+    "all": "ทั้งหมด",
+    "changeStatus": "เปลี่ยนสถานะ:",
+    "attachFile": "แนบไฟล์",
+    "emoji": "อีโมจิ",
+    "sendMessage": "ส่งข้อความ",
+    "selectConversationTitle": "เลือกการสนทนาเพื่อเริ่มตอบลูกค้า",
+    "selectConversationDetail": "เลือกจากรายการทางซ้าย",
+    "messagePlaceholder": "พิมพ์ข้อความตอบลูกค้า... (Enter ส่ง, Shift+Enter ขึ้นบรรทัดใหม่)",
+    "selectConversationPlaceholder": "เลือกการสนทนาก่อน...",
+    "noConversations": "ไม่พบการสนทนา"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "ecommerce": "E-commerce",
+    "analytics": "Analytics",
+    "taskSaas": "Task SaaS",
+    "stocks": "Stocks",
+    "profile": "User Profile",
+    "tasks": "Tasks",
+    "taskList": "Task List",
+    "taskKanban": "Task Kanban",
+    "products": "Products",
+    "orders": "Orders",
+    "addProduct": "Add Product",
+    "invoices": "Invoices",
+    "chat": "แชทลูกค้า"
+  },
+  "status": {
+    "product": {
+      "IN_STOCK": "พร้อมขาย",
+      "LOW_STOCK": "ใกล้หมด",
+      "OUT_OF_STOCK": "หมดสต็อก"
+    },
+    "conversation": {
+      "OPEN": "เปิดอยู่",
+      "PENDING": "รอติดตาม",
+      "RESOLVED": "ปิดเคส"
+    },
+    "task": {
+      "BACKLOG": "Backlog",
+      "TODO": "To do",
+      "IN_PROGRESS": "In progress",
+      "IN_REVIEW": "In review",
+      "DONE": "Done"
+    },
+    "priority": {
+      "LOW": "ต่ำ",
+      "MEDIUM": "กลาง",
+      "HIGH": "สูง",
+      "URGENT": "ด่วน"
+    }
+  },
+  "pages": {
+    "overview": {
+      "badge": "Operations Hub",
+      "title": "ภาพรวม E-commerce Operations",
+      "subtitle": "ติดตามยอดขาย สต็อก แชทลูกค้า และงานทีมในพื้นที่เดียว",
+      "search": "ค้นหา Orders, สินค้า, หรือชื่อลูกค้า..."
+    },
+    "analytics": {
+      "badge": "Analytics",
+      "title": "วิเคราะห์ภาพรวมธุรกิจและทีม",
+      "subtitle": "ดูแนวโน้มคำสั่งซื้อ สต็อก และ workload ของทีม operations",
+      "search": "ค้นหา Orders, สินค้า, หรือ task..."
+    },
+    "products": {
+      "badge": "Inventory Control",
+      "title": "ระบบจัดการสินค้าคงคลัง",
+      "subtitle": "เพิ่มสินค้าใหม่ ตรวจสต็อก ปรับจำนวนคงเหลือ และแยกดูสินค้าที่ใกล้หมดหรือหมดสต็อกสำหรับทีมปฏิบัติการ E-commerce",
+      "search": "ค้นหาชื่อสินค้า, SKU, หรือหมวดหมู่...",
+      "localSearch": "ค้นหาสินค้า...",
+      "allCategories": "ทุกหมวดหมู่",
+      "allStatuses": "ทุกสถานะ",
+      "addProduct": "เพิ่มสินค้าใหม่",
+      "skuCount": "จำนวน SKU",
+      "shownItems": "รายการที่แสดงอยู่",
+      "unitsOnHand": "หน่วยคงเหลือ",
+      "allProducts": "รวมทุกสินค้า",
+      "inventoryValue": "มูลค่าสต็อก",
+      "salePrice": "ตามราคาขาย",
+      "reorderNeeded": "ต้องเติมสต็อก",
+      "lowOutDetail": "ใกล้หมด {low} / หมด {out}",
+      "totalSales": "ยอดขายสะสม",
+      "soldUnits": "จำนวนชิ้นที่ขายแล้ว",
+      "tableTitle": "รายการสินค้า",
+      "tableSubtitle": "ปรับสต็อกได้จากช่องจำนวนหรือปุ่มเพิ่ม/ลด",
+      "product": "สินค้า",
+      "category": "หมวดหมู่",
+      "price": "ราคา",
+      "status": "สถานะ",
+      "stock": "สต็อก",
+      "sold": "ขายแล้ว",
+      "decreaseStock": "ลดสต็อก",
+      "increaseStock": "เพิ่มสต็อก",
+      "emptyTitle": "ไม่พบสินค้า",
+      "emptyDetail": "ลองเปลี่ยนคำค้นหรือเงื่อนไขกรองสินค้า"
+    },
+    "stocks": {
+      "badge": "Stocks",
+      "title": "ภาพรวมสินค้าคงคลังและความเสี่ยงสต็อก",
+      "subtitle": "ตรวจมูลค่าสต็อก สินค้าใกล้หมด สินค้าหมด และการกระจายมูลค่าตามหมวดหมู่สำหรับทีม operations",
+      "search": "ค้นหาสินค้า, SKU, หรือหมวดหมู่...",
+      "loadError": "โหลดข้อมูล stock ไม่สำเร็จ กรุณาลองใหม่อีกครั้ง",
+      "inventoryValue": "Inventory value",
+      "unitsOnHand": "Units on hand",
+      "availableUnits": "available units",
+      "lowStock": "Low stock",
+      "needsReorder": "needs reorder",
+      "outOfStock": "Out of stock",
+      "cannotSell": "cannot sell",
+      "watchlistTitle": "Stock watchlist",
+      "watchlistSubtitle": "สินค้าใกล้หมดหรือหมดสต็อกที่ควรตรวจวันนี้",
+      "noRiskTitle": "ไม่มีสินค้าเสี่ยง",
+      "noRiskDetail": "ตอนนี้ไม่พบสินค้าใกล้หมดหรือหมดสต็อกจากคำค้นนี้",
+      "units": "units",
+      "products": "สินค้า"
+    },
+    "addproduct": {
+      "title": "เพิ่มสินค้าใหม่",
+      "subtitle": "บันทึกสินค้าใหม่เข้าสู่ inventory mock data",
+      "search": "ค้นหาสินค้า...",
+      "productDetails": "Product details"
+    },
+    "orders": {
+      "title": "Orders",
+      "subtitle": "ติดตามคำสั่งซื้อและสถานะจัดส่ง",
+      "search": "ค้นหา Order หรือลูกค้า..."
+    },
+    "invoices": {
+      "title": "Invoices",
+      "subtitle": "ตรวจสอบ invoice และสถานะการชำระเงิน",
+      "search": "ค้นหา invoice หรือ order..."
+    },
+    "chat": {
+      "title": "Customer Chat",
+      "subtitle": "กล่องข้อความลูกค้าและเคสที่ต้องติดตาม",
+      "search": "ค้นหาชื่อลูกค้า, Order..."
+    },
+    "tasks": {
+      "title": "SaaS Tasks",
+      "subtitle": "จัดการงานทีมและ roadmap",
+      "search": "ค้นหา task, project, assignee..."
+    },
+    "tasklist": {
+      "title": "Task List",
+      "subtitle": "ดูงานทั้งหมดในรูปแบบตาราง",
+      "search": "ค้นหา task..."
+    },
+    "taskkanban": {
+      "title": "Task Kanban",
+      "subtitle": "จัดลำดับงานตามสถานะ",
+      "search": "ค้นหา task..."
+    },
+    "profile": {
+      "title": "User Profile",
+      "subtitle": "ภาพรวมโปรไฟล์และงานที่เกี่ยวข้อง",
+      "search": "ค้นหางานหรือแชท..."
+    }
+  },
+  "pagination": {
+    "label": "pagination",
+    "first": "หน้าแรก",
+    "previous": "หน้าก่อนหน้า",
+    "next": "หน้าถัดไป",
+    "last": "หน้าสุดท้าย",
+    "showing": "แสดง {from}-{to} จาก {total} {itemLabel}",
+    "items": "รายการ"
+  }
+}

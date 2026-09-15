@@ -1,0 +1,203 @@
+{
+  "metadata": {
+    "title": "EcomFlow - E-commerce Operations & Customer Chat",
+    "description": "An e-commerce operations dashboard with customer chat, order management, inventory, and analytics."
+  },
+  "common": {
+    "searchPlaceholder": "Search orders, products, or customers...",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchTheme": "Switch theme",
+    "customerChat": "Customer chat",
+    "notifications": "Notifications",
+    "notificationTitle": "Notifications",
+    "itemsToReview": "{count} items to review",
+    "live": "Live",
+    "noNotifications": "No new notifications",
+    "allClear": "Everything looks good",
+    "newChatFrom": "New chat from {name}",
+    "customer": "customer",
+    "urgentTask": "Urgent task: {id}",
+    "dueSoon": "Due soon {date}",
+    "admin": "Admin",
+    "menu": "Menu",
+    "support": "Support",
+    "systemReady": "System ready",
+    "minimalAdmin": "Minimal Admin",
+    "language": "Language",
+    "thai": "Thai",
+    "english": "English",
+    "export": "Export",
+    "refresh": "Refresh",
+    "retry": "Retry",
+    "loadingErrorTitle": "Something went wrong",
+    "unread": "Unread",
+    "all": "All",
+    "changeStatus": "Change status:",
+    "attachFile": "Attach file",
+    "emoji": "Emoji",
+    "sendMessage": "Send message",
+    "selectConversationTitle": "Select a conversation to start replying",
+    "selectConversationDetail": "Choose one from the list on the left",
+    "messagePlaceholder": "Type a reply... (Enter to send, Shift+Enter for a new line)",
+    "selectConversationPlaceholder": "Select a conversation first...",
+    "noConversations": "No conversations found"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "ecommerce": "E-commerce",
+    "analytics": "Analytics",
+    "taskSaas": "Task SaaS",
+    "stocks": "Stocks",
+    "profile": "User Profile",
+    "tasks": "Tasks",
+    "taskList": "Task List",
+    "taskKanban": "Task Kanban",
+    "products": "Products",
+    "orders": "Orders",
+    "addProduct": "Add Product",
+    "invoices": "Invoices",
+    "chat": "Customer Chat"
+  },
+  "status": {
+    "product": {
+      "IN_STOCK": "In stock",
+      "LOW_STOCK": "Low stock",
+      "OUT_OF_STOCK": "Out of stock"
+    },
+    "conversation": {
+      "OPEN": "Open",
+      "PENDING": "Pending",
+      "RESOLVED": "Resolved"
+    },
+    "task": {
+      "BACKLOG": "Backlog",
+      "TODO": "To do",
+      "IN_PROGRESS": "In progress",
+      "IN_REVIEW": "In review",
+      "DONE": "Done"
+    },
+    "priority": {
+      "LOW": "Low",
+      "MEDIUM": "Medium",
+      "HIGH": "High",
+      "URGENT": "Urgent"
+    }
+  },
+  "pages": {
+    "overview": {
+      "badge": "Operations Hub",
+      "title": "E-commerce Operations Overview",
+      "subtitle": "Track revenue, inventory, customer chat, and team work in one workspace.",
+      "search": "Search orders, products, or customers..."
+    },
+    "analytics": {
+      "badge": "Analytics",
+      "title": "Business and Team Analytics",
+      "subtitle": "Review order trends, inventory risks, and operations workload.",
+      "search": "Search orders, products, or tasks..."
+    },
+    "products": {
+      "badge": "Inventory Control",
+      "title": "Product Inventory Management",
+      "subtitle": "Add products, inspect stock, adjust quantities, and focus on low or out-of-stock items for the e-commerce operations team.",
+      "search": "Search product name, SKU, or category...",
+      "localSearch": "Search products...",
+      "allCategories": "All categories",
+      "allStatuses": "All statuses",
+      "addProduct": "Add product",
+      "skuCount": "SKU count",
+      "shownItems": "Visible items",
+      "unitsOnHand": "Units on hand",
+      "allProducts": "All products",
+      "inventoryValue": "Inventory value",
+      "salePrice": "By sale price",
+      "reorderNeeded": "Reorder needed",
+      "lowOutDetail": "Low {low} / Out {out}",
+      "totalSales": "Total sales",
+      "soldUnits": "Units sold",
+      "tableTitle": "Product list",
+      "tableSubtitle": "Adjust stock from the quantity field or plus/minus buttons.",
+      "product": "Product",
+      "category": "Category",
+      "price": "Price",
+      "status": "Status",
+      "stock": "Stock",
+      "sold": "Sold",
+      "decreaseStock": "Decrease stock",
+      "increaseStock": "Increase stock",
+      "emptyTitle": "No products found",
+      "emptyDetail": "Try changing your search or product filters."
+    },
+    "stocks": {
+      "badge": "Stocks",
+      "title": "Inventory Overview and Stock Risk",
+      "subtitle": "Monitor inventory value, low-stock products, out-of-stock products, and category value distribution for operations.",
+      "search": "Search products, SKU, or category...",
+      "loadError": "Could not load stock data. Please try again.",
+      "inventoryValue": "Inventory value",
+      "unitsOnHand": "Units on hand",
+      "availableUnits": "available units",
+      "lowStock": "Low stock",
+      "needsReorder": "needs reorder",
+      "outOfStock": "Out of stock",
+      "cannotSell": "cannot sell",
+      "watchlistTitle": "Stock watchlist",
+      "watchlistSubtitle": "Low or out-of-stock products to review today",
+      "noRiskTitle": "No stock risks",
+      "noRiskDetail": "No low or out-of-stock products match this search.",
+      "units": "units",
+      "products": "products"
+    },
+    "addproduct": {
+      "title": "Add Product",
+      "subtitle": "Create a new product in the mock inventory data.",
+      "search": "Search products...",
+      "productDetails": "Product details"
+    },
+    "orders": {
+      "title": "Orders",
+      "subtitle": "Track orders and fulfillment status.",
+      "search": "Search orders or customers..."
+    },
+    "invoices": {
+      "title": "Invoices",
+      "subtitle": "Review invoices and payment status.",
+      "search": "Search invoices or orders..."
+    },
+    "chat": {
+      "title": "Customer Chat",
+      "subtitle": "Customer inbox and support cases that need follow-up.",
+      "search": "Search customer name or order..."
+    },
+    "tasks": {
+      "title": "SaaS Tasks",
+      "subtitle": "Manage team work and roadmap delivery.",
+      "search": "Search task, project, or assignee..."
+    },
+    "tasklist": {
+      "title": "Task List",
+      "subtitle": "Review all work in a table view.",
+      "search": "Search tasks..."
+    },
+    "taskkanban": {
+      "title": "Task Kanban",
+      "subtitle": "Prioritize work by status.",
+      "search": "Search tasks..."
+    },
+    "profile": {
+      "title": "User Profile",
+      "subtitle": "Profile overview and related work.",
+      "search": "Search work or chats..."
+    }
+  },
+  "pagination": {
+    "label": "pagination",
+    "first": "First page",
+    "previous": "Previous page",
+    "next": "Next page",
+    "last": "Last page",
+    "showing": "Showing {from}-{to} of {total} {itemLabel}",
+    "items": "items"
+  }
+}
